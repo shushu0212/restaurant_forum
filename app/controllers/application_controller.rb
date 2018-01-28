@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-end
 
-private
+  before_action :authenticate_user!
+
+  private
 
   def authenticate_admin
     unless current_user.admin?
@@ -10,3 +11,4 @@ private
       redirect_to root_path
     end
   end
+end
