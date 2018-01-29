@@ -23,14 +23,24 @@
     <div class="clearfix"></div>
 
     <hr>
-    <div class="col-md-4">
-      <%= link_to 'Back to index', restaurants_path %>
-    </div>
+    
   </div>
 </div>
 
 <div class="container">
   <div class="row">
+
+    <% @restaurant.comments.each do |comment| %>
+    <div>
+      <h4><%= comment.user.email.split('@').first %></h4>
+      <p><%= simple_format comment.content %></p>
+      <p class="text-muted">
+        <em><%= time_ago_in_words(comment.created_at) %> ago</em>
+      </p>
+    </div>
+    <hr>
+    <% end %>
+
     <!-- 新增評論的表單輸入框 -->
     <%= form_for [@restaurant, @comment] do |f| %>
     <div class="form-group">
@@ -41,5 +51,11 @@
       <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
     </div>
     <% end %>
-  </div>
+
+    <div class="col-md-4">
+      <%= link_to 'Back to index', restaurants_path %>
+    </div>
+  </div> 
 </div>
+
+
