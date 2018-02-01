@@ -1,0 +1,25 @@
+<h1>Edit Profile</h1>
+<%= form_for [@user] do |f| %>
+      
+     
+      <div class="form-gruop">
+        <%= f.label :name, "Name" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="form-gruop">
+        <%= f.label :infor, "自我介紹" %>
+        <%= f.text_area :intro,class: "form-control" %>
+      </div>
+
+      <div class="form-gruop">
+        <%= f.label :avatar, "大頭照上傳" %>
+        <%= image_tag @user.avatar, width: '300px' if @user.avatar? %>
+        <%= f.file_field :avatar %>
+      </div>
+
+      <div class="form-gruop">
+        <%= f.submit class: "btn-primary" %>
+        <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+      </div>  
+    <% end %>
