@@ -13,6 +13,14 @@
             <%= link_to 'Edit Profile', edit_user_path, class: "btn btn-primary" %>
         </div>
       </div>
+    
+      <div>
+        <% @commented_restaurants.each do |restaurant| %>
+          <h5><%= link_to restaurant.name ,restaurant_path(restaurant) %></h5>
+        <% end %>
+      </div>
+
     </div>
   <div>
 </div>
+
