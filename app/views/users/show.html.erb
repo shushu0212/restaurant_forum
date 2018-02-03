@@ -1,15 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-1">
-      <%= image_tag @user.avatar, class: "img-responsive center-block" %>
-    </div>
-    <div class="col-md-4">
-      <ul class="list-unstyled">
-        <li><%= @user.name %></li>
-        <li><%= @user.email %></li>
-        <li><%= @user.intro %></li>
-        <li><%= link_to 'Edit Profile', edit_user_path, class: "btn btn-primary" %></li>
-      </ul>
+    <div class="col-md-10 col-md-offset-1">
+      <div class="page-header">
+        <div class="col-md-3 col-sm-4">
+          <%= image_tag @user.avatar, class: "img-responsive center-block" %>
+        </div>
+
+        <div class="col-md-9 col-sm-8">
+          <h2><%= @user.name %></h2>
+          <p><strong><%= @user.email %></strong></p>
+          <div><%= simple_format @user.intro %><div>
+            <%= link_to 'Edit Profile', edit_user_path, class: "btn btn-primary" %>
+        </div>
+      </div>
     </div>
   <div>
 </div>
