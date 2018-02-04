@@ -15,12 +15,12 @@
 
           <div class="form-gruop">
             <%= f.label :avatar, "大頭照上傳" %>
-            <%= image_tag @user.avatar, width: '300px' if @user.avatar? %>
+            <%= image_tag @user.avatar if @user.avatar? %>
             <%= f.file_field :avatar %>
           </div>
 
           <div class="form-gruop">
-            <%= f.submit "Update" class: "btn-primary" %>
+            <%= f.submit "Update", class: "btn-primary" %>
             <%= link_to "Cancel", user_path(@user), class: "btn btn-default" %>
           </div>  
         <% end %>
