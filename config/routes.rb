@@ -28,7 +28,10 @@ Rails.application.routes.draw do
   resources :categories, only: :show
   root "restaurants#index"
 
-  resources :users, only: [:show, :edit, :update]
+  # 將 :index 加入開放項目
+  resources :users, only: [:index, :show, :edit, :update]
+  # 追蹤 / 取消追蹤
+  resources :followships, only: [:create, :destroy]
 
   namespace :admin do
     resources :restaurants
