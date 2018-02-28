@@ -10,4 +10,13 @@ class FollowshipsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
+
+  def destroy
+    # where 會回傳物件集合(Array)
+    followships = Followship.where(user: current_user, following_id: params[:id])
+    followships.destroy_all
+    flash[:alert] = "Followship destroyed"
+    redirect_back(fallback_location: root_path)
+  end
+
 end
