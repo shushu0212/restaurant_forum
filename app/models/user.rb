@@ -20,7 +20,7 @@ class User < ApplicationRecord
   has_many :followships, dependent: :destroy
   has_many :followings, through: :followships
 
-  mount_uploader :avatar, PhotoUploader
+  mount_uploader :avatar, AvatarUploader
 
   def admin?
     self.role == "admin"
