@@ -20,12 +20,22 @@
 
 <br>
 <div class="container">
-  <% @users.each do |user| %>
-    <li>
-      <%= user.email.split('@').first %>
-      <!--使用新增追蹤按鈕的prtial-->  
-      <%= render partial: "shared/follow", locals:{user:user} %>
-     </li>
-   <% end %>
- 
+  <div class="row">
+
+    <div class="col-md-10 col-md-offset-1">
+      <h1>美食達人</h1>
+      
+      <% @users.each do |user| %>
+        <div class="col-md-3 col-sm-4 col-xs-6 text-center user-item">
+          <%= image_tag user.avatar, class: "img-responsive" %>
+          
+          <h4><%= link_to user.email.split('@').first, user_path(user) %></h4>
+
+          <!--使用新增追蹤按鈕的prtial-->  
+          <%= render partial: "shared/follow", locals:{user:user} %>
+
+        </div>
+      <% end %>
+
+  </div>
 </div>
