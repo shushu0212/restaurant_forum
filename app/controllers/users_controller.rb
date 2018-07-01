@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   def show
     @commented_restaurants = @user.restaurants.uniq
     @favorited_restaurants = @user.favorited_restaurants
-
+    @followings = @user.followings.order(created_at: :desc)
+    @followers = @user.followers.order(created_at: :desc)
   end
 
   def edit
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+
 
   private
 
