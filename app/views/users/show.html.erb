@@ -1,10 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-
       <!-- page-header 裡面顯示個人檔案資料 -->
-      <div class="page-header">
-      
+      <div class="page-header">  
         <div class="col-md-3 col-sm-4">
           <div class="text-center">
           <%= image_tag @user.avatar, class:"img-responsive img-rounded" %>
@@ -27,36 +25,41 @@
       <br>
 
     </div>
+  </div>
 
-    <div>
-      <div class = "row">
-        <div class="col-md-4" >
-          <!-- 顯示自己去追蹤的人的清單 -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title"><strong><%= @user.followings.count %></strong> followings</h3>
-            </div>
-            <div class="panel-body">
-              <% @followings.each do |following| %>
-                <h5><%= following.email %></h5>
-              <% end %>
-            </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      
+      <div class="col-md-3 col-sm-4">
+
+        <!-- 顯示自己去追蹤的人的清單 -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong><%= @user.followings.count %></strong> followings</h3>
           </div>
-
-          <!-- 顯示追蹤自己的人的清單 -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title"><strong><%= @user.followers.count %></strong> followers</h3>
-            </div>
-            <div class="panel-body">
-              <% @followers.each do |follower| %>
-                <h5><%= follower.email %></h5>
-              <% end %>
-            </div>
+          <div class="panel-body">
+            <% @followings.each do |following| %>
+              <h5><%= following.email %></h5>
+            <% end %>
           </div>
         </div>
 
-      <div class="col-md-8">
+        <!-- 顯示追蹤自己的人的清單 -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong><%= @user.followers.count %></strong> followers</h3>
+          </div>
+          <div class="panel-body">
+            <% @followers.each do |follower| %>
+              <h5><%= follower.email %></h5>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-9 col-sm-8">
+
         <!-- 顯示已評論餐廳的清單，panel包一個panel-body裡面使用row>col的layouts來顯示評論 -->
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -64,15 +67,14 @@
           </div>
           <div class="panel-body">
             <% @commented_restaurants.each do |restaurant| %>
-            <%= link_to restaurant_path(restaurant) do %>
-            <div class="my-restaurant">
-              <div>
-                <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+              <%= link_to restaurant_path(restaurant) do %>
+              <div class="my-restaurant">
+                <div>
+                  <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+                </div>
+                <h5><%= restaurant.name %></h5>
               </div>
-              <h5><%= restaurant.name %></h5>
-            </div>
-            <% end %>
-
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -84,21 +86,19 @@
           </div>
           <div class="panel-body">
             <% @favorited_restaurants.each do |restaurant| %>
-            <%= link_to restaurant_path(restaurant) do %>
-            <div class="my-restaurant">
-              <div>
-                <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+              <%= link_to restaurant_path(restaurant) do %>
+              <div class="my-restaurant">
+                <div>
+                  <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+                </div>
+                <h5><%= restaurant.name %></h5>
               </div>
-              <h5><%= restaurant.name %></h5>
-            </div>
-            <% end %>
-
+              <% end %>
             <% end %>
           </div>
         </div>
 
       </div>
-      
     </div>
   <div>
 </div>
