@@ -26,11 +26,18 @@
 
     </div>
   </div>
+</div>
 
+<div
+<br>
+</div>
+
+
+<div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       
-      <div class="col-md-3 col-sm-4">
+      <div class="col-md-4 col-sm-4">
 
         <!-- 顯示自己去追蹤的人的清單 -->
         <div class="panel panel-default">
@@ -38,9 +45,16 @@
             <h3 class="panel-title"><strong><%= @user.followings.count %></strong> followings</h3>
           </div>
           <div class="panel-body">
-            <% @followings.each do |following| %>
-              <h5><%= following.email %></h5>
-            <% end %>
+            <ul class="list-group">
+              <% @followings.each do |following| %>
+              <li class="list-group-item">
+                <%= link_to user_path(following) do %>
+                <%= image_tag following.avatar, height: 30, width: 30, class: "img-circle" %>
+                <%= following.name %>
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
           </div>
         </div>
 
@@ -58,7 +72,7 @@
 
       </div>
 
-      <div class="col-md-9 col-sm-8">
+      <div class="col-md-8 col-sm-8">
 
         <!-- 顯示已評論餐廳的清單，panel包一個panel-body裡面使用row>col的layouts來顯示評論 -->
         <div class="panel panel-default">
