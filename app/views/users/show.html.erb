@@ -17,102 +17,111 @@
             <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
           <% end %>
         </div>
-
-        <div class="clearfix"></div>
-
       </div>
-    
-      <br>
-
     </div>
   </div>
-</div>
+  
+  <div class="clearfix"></div>
 
-<div
-<br>
-</div>
+  <br>
 
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
       
-      <div class="col-md-4 col-sm-4">
+    <div class="col-md-4">
 
-        <!-- 顯示自己去追蹤的人的清單 -->
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"><strong><%= @user.followings.count %></strong> followings</h3>
-          </div>
-          <div class="panel-body">
-            <ul class="list-group">
-              <% @followings.each do |following| %>
-              <li class="list-group-item">
-                <%= link_to user_path(following) do %>
-                <%= image_tag following.avatar, height: 30, width: 30, class: "img-circle" %>
-                <%= following.name %>
-                <% end %>
-              </li>
-              <% end %>
-            </ul>
-          </div>
+      <!-- 顯示自己去追蹤的人的清單 -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong><%= @user.followings.count %></strong> followings</h3>
         </div>
-
-        <!-- 顯示追蹤自己的人的清單 -->
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"><strong><%= @user.followers.count %></strong> followers</h3>
-          </div>
-          <div class="panel-body">
-            <% @followers.each do |follower| %>
-              <h5><%= follower.email %></h5>
+        
+        <ul class="list-group">
+          <% @followings.each do |following| %>
+          <li class="list-group-item">
+            <%= link_to user_path(following) do %>
+            <%= image_tag following.avatar, height: 30, width: 30, class: "img-circle" %>
+            
+            <% if following.name? %>
+            <%= following.name %>
+            <% else %>
+            <%= following.email.split('@').first %>
             <% end %>
-          </div>
-        </div>
-
+            
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+        
       </div>
 
-      <div class="col-md-8 col-sm-8">
-
-        <!-- 顯示已評論餐廳的清單，panel包一個panel-body裡面使用row>col的layouts來顯示評論 -->
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"><strong><%= @commented_restaurants.count %></strong> 已評論餐廳</h3>
-          </div>
-          <div class="panel-body">
-            <% @commented_restaurants.each do |restaurant| %>
-              <%= link_to restaurant_path(restaurant) do %>
-              <div class="my-restaurant">
-                <div>
-                  <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
-                </div>
-                <h5><%= restaurant.name %></h5>
-              </div>
-              <% end %>
-            <% end %>
-          </div>
+      <!-- 顯示追蹤自己的人的清單 -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong><%= @user.followers.count %></strong> followers</h3>
         </div>
-
-        <!-- 顯示已收藏餐廳的清單 -->
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"><strong><%= @favorited_restaurants.count %></strong> 已收藏餐廳</h3>
-          </div>
-          <div class="panel-body">
-            <% @favorited_restaurants.each do |restaurant| %>
-              <%= link_to restaurant_path(restaurant) do %>
-              <div class="my-restaurant">
-                <div>
-                  <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
-                </div>
-                <h5><%= restaurant.name %></h5>
-              </div>
-              <% end %>
+        
+        <ul class="list-group">
+          <% @followers.each do |follower| %>
+          <li class="list-group-item">
+            <%= link_to user_path(follower) do %>
+            <%= image_tag follower.avatar, height: 30, width: 30, class: "img-circle" %>
+            
+            <% if follower.name? %>
+            <%= follower.name %>
+            <% else %>
+            <%= follower.email.split('@').first %>
             <% end %>
-          </div>
-        </div>
+            
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+        
+      </div>
 
+    </div>
+
+    <div class="col-md-8 col-sm-8">
+
+      <!-- 顯示已評論餐廳的清單，panel包一個panel-body裡面使用row>col的layouts來顯示評論 -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong><%= @commented_restaurants.count %></strong> 已評論餐廳</h3>
+        </div>
+        <div class="panel-body">
+          <% @commented_restaurants.each do |restaurant| %>
+            <%= link_to restaurant_path(restaurant) do %>
+            <div class="my-restaurant">
+              <div>
+                <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+              </div>
+              <h5><%= restaurant.name %></h5>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- 顯示已收藏餐廳的清單 -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong><%= @favorited_restaurants.count %></strong> 已收藏餐廳</h3>
+        </div>
+        <div class="panel-body">
+          <% @favorited_restaurants.each do |restaurant| %>
+            <%= link_to restaurant_path(restaurant) do %>
+            <div class="my-restaurant">
+              <div>
+                <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+              </div>
+              <h5><%= restaurant.name %></h5>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   <div>
 </div>
+
+
