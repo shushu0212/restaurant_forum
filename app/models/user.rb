@@ -24,6 +24,10 @@ class User < ApplicationRecord
   has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
   has_many :followers, through: :inverse_followships, source: :user
 
+  # 設定friend關係
+  has_many :friendships, dependent: :destroy
+  has_many :friendings, through: :friendships
+
   mount_uploader :avatar, AvatarUploader
 
   def admin?
@@ -34,4 +38,8 @@ class User < ApplicationRecord
     self.followings.include?(user)
   end
   
+  def friending?(user)
+    self.friendings.include?(user)
+  end
+
 end
