@@ -29,6 +29,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def friend_list
+  end
+
 
   private
 

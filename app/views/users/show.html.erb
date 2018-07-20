@@ -16,6 +16,7 @@
           <% if @user.email == current_user.email %>
             <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
           <% end %>
+          <%= link_to 'myfriend' , friend_list_user_path(@user), class: "btn btn-primary" %>
         </div>
       </div>
     </div>
