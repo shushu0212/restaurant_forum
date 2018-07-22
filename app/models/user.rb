@@ -46,4 +46,9 @@ class User < ApplicationRecord
     self.friendings.include?(user)
   end
 
+  def all_friends 
+    friends = self.friendings + self.frienders
+    return friends.uniq
+  end
+
 end

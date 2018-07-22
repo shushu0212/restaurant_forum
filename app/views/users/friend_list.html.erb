@@ -3,47 +3,22 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <h1>my friend</h1>
-      <!-- 顯示自己去加入朋友的人的清單 -->
+      <!-- 顯示加入朋友的人的清單 -->
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"><strong><%= @user.friendings.count %></strong> friendings</h3>
+          <h3 class="panel-title"><strong><%= current_user.all_friends.count %></strong> friends</h3>
         </div>
         
         <ul class="list-group">
-          <% @friendings.each do |friending| %>
+          <% @friends.each do |friend| %>
           <li class="list-group-item">
-            <%= link_to user_path(friending) do %>
-            <%= image_tag friending.avatar, height: 30, width: 30, class: "img-circle" %>
+            <%= link_to user_path(friend) do %>
+            <%= image_tag friend.avatar, height: 30, width: 30, class: "img-circle" %>
             
-            <% if friending.name? %>
-            <%= friending.name %>
+            <% if friend.name? %>
+            <%= friend.name %>
             <% else %>
-            <%= friending.email.split('@').first %>
-            <% end %>
-            
-            <% end %>
-          </li>
-          <% end %>
-        </ul>
-        
-      </div>
-
-      <!-- 顯示把自己加入朋友的人的清單 -->
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><strong><%= @user.frienders.count %></strong> frienders</h3>
-        </div>
-        
-        <ul class="list-group">
-          <% @frienders.each do |friender| %>
-          <li class="list-group-item">
-            <%= link_to user_path(friender) do %>
-            <%= image_tag friender.avatar, height: 30, width: 30, class: "img-circle" %>
-            
-            <% if friender.name? %>
-            <%= friender.name %>
-            <% else %>
-            <%= friender.email.split('@').first %>
+            <%= friend.email.split('@').first %>
             <% end %>
             
             <% end %>

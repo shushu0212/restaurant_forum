@@ -30,8 +30,7 @@ class UsersController < ApplicationController
   end
 
   def friend_list
-    @friendings = @user.friendings.order(created_at: :desc)
-    @frienders = @user.frienders.order(created_at: :desc)
+    @friends = current_user.all_friends
   end
 
 
