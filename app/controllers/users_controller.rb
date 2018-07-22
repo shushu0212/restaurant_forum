@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :friend_list]
 
   def index
     @users = User.all
@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   end
 
   def friend_list
+    @friendings = @user.friendings.order(created_at: :desc)
   end
 
 
