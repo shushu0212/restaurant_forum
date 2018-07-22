@@ -27,6 +27,32 @@
         </ul>
         
       </div>
+
+      <!-- 顯示把自己加入朋友的人的清單 -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong><%= @user.frienders.count %></strong> frienders</h3>
+        </div>
+        
+        <ul class="list-group">
+          <% @frienders.each do |friender| %>
+          <li class="list-group-item">
+            <%= link_to user_path(friender) do %>
+            <%= image_tag friender.avatar, height: 30, width: 30, class: "img-circle" %>
+            
+            <% if friender.name? %>
+            <%= friender.name %>
+            <% else %>
+            <%= friender.email.split('@').first %>
+            <% end %>
+            
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+        
+      </div>
+
     </div>
   </div>
 </div>
