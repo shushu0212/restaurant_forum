@@ -28,6 +28,10 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friendings, through: :friendships
 
+  # 設定inverse_friend關係(被加入朋友)
+  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friending_id"
+  has_many :frienders, through: :inverse_friendships, source: :user
+
   mount_uploader :avatar, AvatarUploader
 
   def admin?
