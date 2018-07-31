@@ -4,7 +4,7 @@
    <!-- 使用 Bootstrap components 的 Nav Tabs -->
    <!-- https://getbootstrap.com/docs/3.3/components/#nav-tabs -->
    <ul class="nav nav-tabs">
-     <li role="presentation" class="active">
+     <li role="presentation">
        <%= link_to '首頁', root_path %>
      </li>
      <li role="presentation">
@@ -13,7 +13,7 @@
      <li role="presentation">
        <%= link_to '美食達人', users_path %>
      </li>
-     <li role="presentation">
+     <li role="presentation" class="active">
         <%= link_to 'TOP10人氣餐廳', ranking_restaurants_path %>
      </li>
    </ul>
@@ -25,22 +25,11 @@
 <br>
 <div class="container">
   <div class="row">
-
-    <!-- restaurants list，有多寫restaurant-item的class style -->
-    <ul class="nav nav-pills nav-pills-center">
-      <li role="presentation" class="active"><%= link_to "全部餐廳", root_path %></li>
-      <% @categories.each do |category| %>
-        <li role="presentation"><%= link_to category.name, category_path(category) %></li>
-      <% end %>
-    </ul>
-    <br>
+    <h1>TOP10人氣餐廳</h1>
 
     <%= render partial: "shared/restaurant_list" %>
 
-    <!-- 有generate kaminari paginate bootstrap style -->
-    <div class="text-center">
-      <%= paginate @restaurants %>
-    </div>
 
   </div>
 </div>
+
